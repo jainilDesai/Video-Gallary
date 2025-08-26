@@ -60,8 +60,20 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
         },
       });
       onSuccess(res);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      if (err instanceof ImageKitInvalidRequestError) {
+        setError("Invalid request. Please try again.");
+      } else if (err instanceof ImageKitUploadNetworkError) {
+        setError("Network error during upload. Please retry.");
+      } else if (err instanceof ImageKitAbortError) {
+        setError("error during upload. Please retry.");
+      } else if (err instanceof ImageKitServerError) {
+        setError("ImageKit server error. Try later.");
+      } else {
+        setError("Something went wrong.");
+      }
+      console.error(error);
+      console.error(err);
     } finally {
       setUploading(false);
     }

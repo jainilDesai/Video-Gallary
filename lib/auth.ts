@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
           await connectDB();
           const user = await User.findOne({ email: credentials.email });
 
-          if (User) {
+          if (!user) {
             throw new Error("No User found with this Email");
           }
 
@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
             credentials.password,
             user.password
           );
-          if (isValid) {
+          if (!isValid) {
             throw new Error("Invalid Password");
           }
 
