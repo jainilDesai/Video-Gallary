@@ -150,9 +150,12 @@ export default function UploadPage() {
               <FileUpload
                 fileType="video"
                 onSuccess={handleVideoUpload}
-                onProgress={setProgress}
+                onProgress={(p) => {
+                  if (progress === 0 && p > 0) setProgress(1); // show bar immediately
+                  setProgress(p);
+                }}
               />
-              {uploading && (
+              {progress > 0 && progress < 100 && (
                 <div
                   style={{
                     width: "100%",
@@ -174,7 +177,7 @@ export default function UploadPage() {
                   />
                 </div>
               )}
-              {videoUrl && !uploading && (
+              {videoUrl && progress === 100 && !uploading && (
                 <p style={{ color: "#4fff8f", marginTop: 4 }}>
                   Video uploaded!
                 </p>
