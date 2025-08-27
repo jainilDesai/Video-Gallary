@@ -42,7 +42,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
     setError(null);
     setUploading(true);
     try {
-      const authRes = await fetch("/api/auth/imagekit-auth");
+      const authRes = await fetch("/api/auth/imagekiit-auth");
       const auth = await authRes.json();
 
       const res = await upload({

@@ -8,7 +8,7 @@ export async function GET() {
     });
 
     return Response.json({
-      authParas,
+      ...authParas,
       publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
     });
   } catch (error) {
