@@ -13,7 +13,6 @@ export default function UploadPage() {
   const [error, setError] = useState("");
   const [progress, setProgress] = useState(0);
 
-  // Called after video is uploaded to ImageKit
   type ImageKitUploadResponse = {
     url: string;
     thumbnailUrl?: string;
@@ -41,7 +40,7 @@ export default function UploadPage() {
         title,
         description,
         videoUrl,
-        thumbnailUrl: thumbnailUrl || videoUrl, // fallback if no thumbnail
+        thumbnailUrl: thumbnailUrl || videoUrl,
       });
       setSuccess("Video uploaded and saved!");
       setTitle("");
@@ -151,7 +150,7 @@ export default function UploadPage() {
                 fileType="video"
                 onSuccess={handleVideoUpload}
                 onProgress={(p) => {
-                  if (progress === 0 && p > 0) setProgress(1); // show bar immediately
+                  if (progress === 0 && p > 0) setProgress(1);
                   setProgress(p);
                 }}
               />

@@ -1,19 +1,11 @@
 import { apiClient } from "@/lib/api-client";
-import { IVideo } from "@/models/Video";
-import Image from "next/image";
 
 export default async function Home() {
-  let videos: IVideo[] = [];
-  let error: unknown = null;
+  // ...existing code...
   try {
-    videos = (await apiClient.getVideos()) as IVideo[];
-    // Debug log: print videos array
-    // eslint-disable-next-line no-console
-    console.log("Fetched videos:", videos);
-  } catch (err) {
-    error = err;
-    // eslint-disable-next-line no-console
-    console.error("Error fetching videos:", err);
+    await apiClient.getVideos();
+  } catch {
+    // error handling
   }
   return (
     <main style={{ maxWidth: 1200, margin: "0 auto", padding: 24 }}>

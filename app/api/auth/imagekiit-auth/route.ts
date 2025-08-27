@@ -11,8 +11,8 @@ export async function GET() {
       ...authParas,
       publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY,
     });
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // error handling
 
     return Response.json(
       {

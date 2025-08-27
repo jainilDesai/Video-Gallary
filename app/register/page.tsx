@@ -30,8 +30,8 @@ function RegisterPage() {
       } else {
         alert(data.error || "Registration failed");
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
+      // error handling
     }
   };
 

@@ -21,8 +21,8 @@ function LoginPage() {
       } else {
         alert(res?.error || "Login failed");
       }
-    } catch (error) {
-      console.log(error);
+    } catch {
+      // error handling
     }
   };
 

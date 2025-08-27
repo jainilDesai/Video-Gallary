@@ -1,4 +1,4 @@
-"use client"; // This component must be a client component
+"use client";
 
 import {
   ImageKitAbortError,
@@ -19,12 +19,11 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // optional validation function
   const validateFile = (file: File) => {
     if (fileType === "video" && !file.type.startsWith("video/")) {
       return "Please upload a valid video file";
     }
-    const maxSizeInBytes = 100 * 1024 * 1024; // 100MB
+    const maxSizeInBytes = 100 * 1024 * 1024;
     if (file.size > maxSizeInBytes) {
       return "File size exceeds the maximum limit of 100MB";
     }
@@ -72,8 +71,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
       } else {
         setError("Something went wrong.");
       }
-      console.error(error);
-      console.error(err);
+      // error handling
     } finally {
       setUploading(false);
     }

@@ -14,8 +14,8 @@ export async function GET() {
     }
 
     return NextResponse.json(videos);
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // error handling
     return NextResponse.json(
       { error: "failed to fetch videos" },
       { status: 500 }
@@ -33,14 +33,12 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     const body: IVideo = await request.json();
-    //
     if (
       !body.title ||
       !body.description ||
       !body.videoUrl ||
       !body.thumbnailUrl
     ) {
-      //
       return NextResponse.json(
         { error: "Missing Required fields" },
         { status: 400 }
@@ -56,12 +54,10 @@ export async function POST(request: NextRequest) {
         quality: body.transformation?.quality ?? 100,
       },
     };
-    //
     const newVideo = await Video.create(videoData);
-    //
     return NextResponse.json(newVideo);
-  } catch (error) {
-    console.log(error);
+  } catch {
+    // error handling
     return NextResponse.json(
       { error: "Failed to create video" },
       { status: 500 }
