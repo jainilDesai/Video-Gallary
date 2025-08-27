@@ -72,6 +72,7 @@ const FileUpload = ({ onSuccess, onProgress, fileType }: FileUploadProps) => {
         setError("Something went wrong.");
       }
       // error handling
+      console.log(error);
     } finally {
       setUploading(false);
     }
